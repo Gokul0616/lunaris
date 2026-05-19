@@ -3,18 +3,33 @@ const router = express.Router();
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 
-// Initialize Razorpay client using TEST_RAZORPAY_KEY and TEST_RAZORPAY_SECRET
-const razorpay = new Razorpay({
-  key_id: process.env.TEST_RAZORPAY_KEY,
-  key_secret: process.env.TEST_RAZORPAY_SECRET
-});
+// Lazy-load Razorpay client to prevent startup crashes when keys are not yet configured in env
+let razorpayInstance = null;
+
+const getRazorpayInstance = () => {
+  if (razorpayInstance) return razorpayInstance;
+
+  const keyId = process.env.TEST_RAZORPAY_KEY;
+  const keySecret = process.env.TEST_RAZORPAY_SECRET;
+
+  if (!keyId || !keySecret) {
+    throw new Error('Razorpay API keys (TEST_RAZORPAY_KEY and TEST_RAZORPAY_SECRET) are not configured in environment variables.');
+  }
+
+  razorpayInstance = new Razorpay({
+    key_id: keyId,
+    key_secret: keySecret
+  });
+
+  return razorpayInstance;
+};
 
 // @route   GET /api/payments/key
 // @desc    Get public Razorpay Key ID
 router.get('/key', (req, res) => {
   const keyId = process.env.TEST_RAZORPAY_KEY;
   if (!keyId) {
-    return res.status(500).json({ detail: 'Razorpay Key ID is not configured on the backend' });
+    return res.status(500).json({ detail: 'Razorpay Key ID is not configured on the backend environment variables.' });
   }
   return res.status(200).json({ key: keyId });
 });
@@ -26,6 +41,14 @@ router.post('/create-order', async (req, res) => {
     const { amount } = req.body; // Amount in USD
     if (!amount) {
       return res.status(400).json({ detail: 'Payment amount is required' });
+    }
+
+    // Get the dynamic Razorpay client
+    let razorpay;
+    try {
+      razorpay = getRazorpayInstance();
+    } catch (keyErr) {
+      return res.status(500).json({ detail: keyErr.message });
     }
 
     // Convert USD to INR (e.g., 1 USD = 83 INR)
