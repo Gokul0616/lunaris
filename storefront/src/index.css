@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts mapping: Cinzel for headers, Montserrat for body copy */
+  --font-body-md: 'Montserrat', sans-serif;
+  --font-body-lg: 'Montserrat', sans-serif;
+  --font-body-sm: 'Montserrat', sans-serif;
+  --font-label-lg: 'Montserrat', sans-serif;
+  --font-label-sm: 'Montserrat', sans-serif;
+  --font-display-xl: 'Cinzel', serif;
+  --font-headline: 'Cinzel', serif;
+  --font-headline-lg: 'Cinzel', serif;
+  --font-headline-lg-mobile: 'Cinzel', serif;
+  --font-headline-md: 'Cinzel', serif;
+  --font-headline-sm: 'Cinzel', serif;
+  --font-display-lg: 'Cinzel', serif;
+
+  /* Custom Color Palette (LUNARIS Premium Luxury Matte Black & Silver Theme) */
+  --color-background: #1B1B1D; /* Deep Matte Black */
+  --color-surface: #1B1B1D; /* Deep Matte Black */
+  
+  /* Surfaces and Cards stack hierarchy */
+  --color-surface-dim: #151517; /* Extra Deep Black for recessed backgrounds */
+  --color-surface-bright: #2A2A2E; /* Charcoal Black */
+  --color-surface-container-lowest: #151517;
+  --color-surface-container-low: #1B1B1D;
+  --color-surface-container: #2A2A2E; /* Charcoal Black for primary cards */
+  --color-surface-container-high: #333338;
+  --color-surface-container-highest: #44444A; /* Gunmetal Grey */
+  --color-surface-variant: #2A2A2E;
+
+  /* Outlines and Borders */
+  --color-outline: #44444A; /* Gunmetal Grey border */
+  --color-outline-variant: #44444A; /* Gunmetal Grey secondary border */
+
+  /* Buttons & CTA Colors (Silver Metallic base) */
+  --color-primary: #C8C8CC; /* Silver Metallic button background / primary accent */
+  --color-on-primary: #1B1B1D; /* Deep Matte Black button text */
+  --color-primary-container: #2A2A2E; /* Charcoal primary container background */
+  --color-on-primary-container: #E6E6E8; /* Soft Platinum container text */
+  --color-primary-fixed: #E6E6E8;
+  --color-primary-fixed-dim: #C8C8CC;
+  --color-on-primary-fixed: #1B1B1D;
+  --color-on-primary-fixed-variant: #E6E6E8;
+
+  /* Secondary & Support Accents */
+  --color-secondary: #C8C8CC; /* Silver Metallic secondary accent */
+  --color-on-secondary: #1B1B1D;
+  --color-secondary-container: #44444A; /* Gunmetal Grey secondary card backings */
+  --color-on-secondary-container: #C8C8CC; /* Silver Metallic accent text */
+  --color-secondary-fixed: #C8C8CC;
+  --color-secondary-fixed-dim: #44444A;
+  --color-on-secondary-fixed: #1B1B1D;
+  --color-on-secondary-fixed-variant: #E6E6E8;
+
+  /* Tertiary Accents */
+  --color-tertiary: #E6E6E8; /* Soft Platinum */
+  --color-on-tertiary: #1B1B1D;
+  --color-tertiary-container: #2A2A2E;
+  --color-on-tertiary-container: #C8C8CC;
+  --color-tertiary-fixed: #E6E6E8;
+  --color-tertiary-fixed-dim: #C8C8CC;
+  --color-on-tertiary-fixed: #1B1B1D;
+  --color-on-tertiary-fixed-variant: #E6E6E8;
+
+  /* Typography / Text colors */
+  --color-on-background: #E6E6E8; /* Soft Platinum primary body text */
+  --color-on-surface: #E6E6E8; /* Soft Platinum primary text on cards */
+  --color-on-surface-variant: #C8C8CC; /* Silver Metallic secondary text */
+
+  /* State Colors */
+  --color-error: #FF4D4D;
+  --color-error-container: #551A1A;
+  --color-on-error: #FFFFFF;
+  --color-on-error-container: #FFCCCC;
+  --color-surface-tint: #C8C8CC;
+  --color-inverse-surface: #E6E6E8;
+  --color-inverse-on-surface: #1B1B1D;
+  --color-inverse-primary: #44444A;
+
+  /* Custom Spacing Rules */
+  --spacing-xs: 8px;
+  --spacing-md: 24px;
+  --spacing-xl: 48px;
+  --spacing-lg: 32px;
+  --spacing-sm: 16px;
+  --spacing-unit: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 64px;
+}
+
+/* Custom Base Configurations */
+body {
+  font-family: var(--font-body-md);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Luxury Interactive Effects */
+
+/* Glow effect overlay on hover */
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-glow:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+/* Hover border accent color transition */
+.hover-border-accent {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-border-accent:hover {
+  border-color: var(--color-outline) !important;
+}
+
+/* Luxury Button Hover Accent */
+button, .btn-premium {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:hover:not(:disabled) {
+  opacity: 0.92;
+  box-shadow: 0 0 15px rgba(200, 200, 204, 0.25);
+  transform: translateY(-1px);
+}
+button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInFromRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

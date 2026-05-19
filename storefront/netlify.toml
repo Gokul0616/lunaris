@@ -1,0 +1,37 @@
+[build]
+  publish = "build"
+  command = "npm run build"
+  functions = "netlify/functions"
+
+# API endpoints
+[[redirects]]
+  from = "/api/webhook"
+  to = "/.netlify/functions/webhook"
+  status = 200
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Keep static webhook page for GET requests and testing
+[[redirects]]
+  from = "/webhook"
+  to = "/webhook.html"
+  status = 200
+
+# Static fallback for testing
+[[redirects]]
+  from = "/webhook-static"
+  to = "/api-webhook.html"
+  status = 200
+
+# SPA fallback - this should be last
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"

@@ -1,0 +1,288 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts mapping: Cinzel for brand display, Montserrat for dashboard data */
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cinzel', serif;
+
+  /* Custom Color Palette (LUNARIS Premium Luxury Matte Black & Silver Theme) */
+  --color-background: #1B1B1D; /* Deep Matte Black background */
+  --color-surface: #1B1B1D; /* Deep Matte Black surface */
+  
+  /* Surfaces and Cards stack hierarchy */
+  --color-surface-dim: #151517; /* Extra Deep Black for recessed backgrounds */
+  --color-surface-bright: #2A2A2E; /* Charcoal Black */
+  --color-surface-container-lowest: #151517;
+  --color-surface-container-low: #1B1B1D;
+  --color-surface-container: #2A2A2E; /* Charcoal Black for widgets & lists */
+  --color-surface-container-high: #333338;
+  --color-surface-container-highest: #44444A; /* Gunmetal Grey for borders */
+  --color-surface-variant: #2A2A2E;
+
+  /* Outlines and Borders */
+  --color-outline: #44444A; /* Gunmetal Grey border */
+  --color-outline-variant: #44444A; /* Gunmetal Grey secondary border */
+
+  /* Buttons & CTA Colors (Silver Metallic base) */
+  --color-primary: #C8C8CC; /* Silver Metallic button background / primary accent */
+  --color-on-primary: #1B1B1D; /* Deep Matte Black button text */
+  --color-primary-container: #2A2A2E; /* Charcoal primary container background */
+  --color-on-primary-container: #E6E6E8; /* Soft Platinum container text */
+  --color-primary-fixed: #E6E6E8;
+  --color-primary-fixed-dim: #C8C8CC;
+  --on-primary-fixed: #1B1B1D;
+  --on-primary-fixed-variant: #E6E6E8;
+
+  /* Secondary & Support Accents */
+  --color-secondary: #C8C8CC; /* Silver Metallic secondary accent */
+  --color-on-secondary: #1B1B1D;
+  --color-secondary-container: #44444A; /* Gunmetal Grey secondary card backings */
+  --color-on-secondary-container: #C8C8CC; /* Silver Metallic accent text */
+  --color-secondary-fixed: #C8C8CC;
+  --color-secondary-fixed-dim: #44444A;
+  --color-on-secondary-fixed: #1B1B1D;
+  --color-on-secondary-fixed-variant: #E6E6E8;
+
+  /* Tertiary Accents */
+  --color-tertiary: #E6E6E8; /* Soft Platinum */
+  --color-on-tertiary: #1B1B1D;
+  --color-tertiary-container: #2A2A2E;
+  --color-on-tertiary-container: #C8C8CC;
+  --color-tertiary-fixed: #E6E6E8;
+  --color-tertiary-fixed-dim: #C8C8CC;
+  --on-tertiary-fixed: #1B1B1D;
+  --on-tertiary-fixed-variant: #E6E6E8;
+
+  /* Typography / Text colors */
+  --color-on-background: #E6E6E8; /* Soft Platinum primary body text */
+  --color-on-surface: #E6E6E8; /* Soft Platinum primary text on cards */
+  --color-on-surface-variant: #C8C8CC; /* Silver Metallic secondary text */
+
+  /* State Colors */
+  --color-error: #FF4D4D;
+  --color-error-container: #551A1A;
+  --color-on-error: #FFFFFF;
+  --color-on-error-container: #FFCCCC;
+  --color-surface-tint: #C8C8CC;
+  --color-inverse-surface: #E6E6E8;
+  --color-inverse-on-surface: #1B1B1D;
+  --color-inverse-primary: #44444A;
+
+  /* Custom Spacing Rules */
+  --spacing-xs: 8px;
+  --spacing-md: 24px;
+  --spacing-xl: 48px;
+  --spacing-lg: 32px;
+  --spacing-sm: 16px;
+  --spacing-unit: 8px;
+  --spacing-gutter: 24px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 64px;
+}
+
+/* Global 2px Font Size Scaling Overrides for the Admin Console */
+.text-\[8px\] { font-size: 10px !important; }
+.text-\[9px\] { font-size: 11px !important; }
+.text-\[10px\] { font-size: 12px !important; }
+.text-\[11px\] { font-size: 13px !important; }
+.text-xs { font-size: 14px !important; }
+.text-sm { font-size: 16px !important; }
+.text-base { font-size: 18px !important; }
+.text-lg { font-size: 20px !important; }
+.text-xl { font-size: 22px !important; }
+.text-2xl { font-size: 26px !important; }
+
+/* Custom Base Configurations */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-on-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Intercept Hardcoded Light-Mode & Blue Hex Color Classes to Premium Dark Theme */
+.bg-white {
+  background-color: var(--color-surface-container) !important;
+}
+.bg-\[\#f7fafc\] {
+  background-color: var(--color-background) !important;
+}
+.bg-\[\#f1f4f6\] {
+  background-color: var(--color-surface-dim) !important;
+}
+.bg-\[\#e5e9eb\] {
+  background-color: var(--color-surface-container-high) !important;
+}
+.bg-\[\#e0e3e5\] {
+  background-color: var(--color-surface-container-highest) !important;
+}
+.bg-\[\#ebeef0\] {
+  background-color: var(--color-surface-container) !important;
+}
+.bg-\[\#121212\] {
+  background-color: var(--color-background) !important;
+}
+.bg-\[\#16191f\] {
+  background-color: var(--color-surface-container) !important;
+}
+.bg-\[\#0d0f12\] {
+  background-color: var(--color-background) !important;
+}
+.bg-\[\#f8f9fa\] {
+  background-color: var(--color-surface-dim) !important;
+}
+.bg-\[\#0060a8\] {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+}
+.bg-\[\#0060a8\]\/10, .bg-\[\#0060a8\]\/15, .bg-\[\#0060a8\]\/5 {
+  background-color: rgba(200, 200, 204, 0.08) !important;
+}
+
+/* Hardcoded bg-black button overrides to match primary storefront CTAs */
+button.bg-black {
+  background-color: var(--color-primary) !important;
+  color: var(--color-on-primary) !important;
+  font-weight: 900 !important;
+}
+
+/* Intercept Charts Transparency Overrides */
+.bg-\[\#181c1e\]\/5 {
+  background-color: rgba(230, 230, 232, 0.1) !important;
+}
+.bg-\[\#181c1e\]\/10 {
+  background-color: rgba(230, 230, 232, 0.2) !important;
+}
+.bg-\[\#181c1e\]\/20 {
+  background-color: rgba(230, 230, 232, 0.3) !important;
+}
+.bg-\[\#181c1e\]\/40 {
+  background-color: rgba(230, 230, 232, 0.5) !important;
+}
+.bg-\[\#181c1e\]\/60 {
+  background-color: rgba(230, 230, 232, 0.7) !important;
+}
+
+/* Intercept Chart Hovers */
+.hover\:bg-\[\#181c1e\]\/10:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.hover\:bg-\[\#181c1e\]\/20:hover {
+  background-color: rgba(255, 255, 255, 0.35) !important;
+}
+.hover\:bg-\[\#181c1e\]\/30:hover {
+  background-color: rgba(255, 255, 255, 0.45) !important;
+}
+.hover\:bg-\[\#181c1e\]\/50:hover {
+  background-color: rgba(255, 255, 255, 0.55) !important;
+}
+.hover\:bg-\[\#181c1e\]\/70:hover {
+  background-color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Intercept Texts */
+.text-black {
+  color: var(--color-on-surface) !important;
+}
+.text-\[\#181c1e\] {
+  color: var(--color-on-surface) !important;
+}
+.text-\[\#44474c\] {
+  color: var(--color-on-surface-variant) !important;
+}
+.text-\[\#0060a8\] {
+  color: var(--color-primary) !important;
+}
+.text-\[\#74777d\] {
+  color: var(--color-on-surface-variant) !important;
+}
+.text-\[\#c4c6cc\] {
+  color: var(--color-on-surface-variant) !important;
+}
+.text-\[\#e2e8f0\] {
+  color: var(--color-on-surface) !important;
+}
+.text-neutral-500 {
+  color: var(--color-on-surface-variant) !important;
+}
+
+/* Intercept Borders */
+.border-\[\#c4c6cc\] {
+  border-color: var(--color-outline) !important;
+}
+.border-\[\#c4c6cc\]\/30, .border-\[\#c4c6cc\]\/20, .border-\[\#c4c6cc\]\/15, .border-\[\#c4c6cc\]\/10, .border-\[\#c4c6cc\]\/5 {
+  border-color: rgba(200, 200, 204, 0.12) !important;
+}
+.border-\[\#0060a8\]\/30 {
+  border-color: var(--color-outline) !important;
+}
+
+/* Intercept Hover Classes */
+.hover\:bg-\[\#f1f4f6\]:hover {
+  background-color: var(--color-surface-container-high) !important;
+  color: var(--color-primary) !important;
+}
+.hover\:bg-\[\#e5e9eb\]:hover {
+  background-color: var(--color-surface-container-high) !important;
+  color: var(--color-primary) !important;
+}
+.hover\:bg-\[\#f7fafc\]:hover {
+  background-color: var(--color-surface-container-high) !important;
+}
+.hover\:text-black:hover {
+  color: var(--color-primary) !important;
+}
+
+/* Dark mode inputs, selections, and textareas override */
+input, select, textarea {
+  background-color: var(--color-surface-dim) !important;
+  color: var(--color-on-surface) !important;
+  border-color: var(--color-outline) !important;
+}
+input::placeholder {
+  color: rgba(200, 200, 204, 0.4) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-dim);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary);
+}
+
+/* Luxury Interactive Effects */
+.hover-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-glow:hover {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+}
+
+.hover-border-accent {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hover-border-accent:hover {
+  border-color: var(--color-outline) !important;
+}
+
+button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+button:hover:not(:disabled) {
+  opacity: 0.92;
+  box-shadow: 0 0 15px rgba(200, 200, 204, 0.25);
+  transform: translateY(-1px);
+}
+button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
