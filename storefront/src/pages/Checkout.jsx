@@ -1,10 +1,24 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
+
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+
+const loadRazorpayScript = () => {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+    script.onload = () => resolve(true)
+    script.onerror = () => resolve(false)
+    document.body.appendChild(script)
+  })
+}
 
 export default function Checkout() {
   const navigate = useNavigate()
   const { cartItems, totalPrice, clearCart } = useCart()
+  const { user } = useAuth()
 
   // Stepper state: 1 = Shipping, 2 = Payment
   const [activeStep, setActiveStep] = useState(1)
@@ -43,7 +57,7 @@ export default function Checkout() {
   }
 
   // Final Payment confirmation
-  const handlePaymentSubmit = (e) => {
+  const handlePaymentSubmit = async (e) => {
     if (e) e.preventDefault()
     
     if (paymentMethod === 'card') {
@@ -55,14 +69,92 @@ export default function Checkout() {
 
     setIsPaying(true)
 
-    // Simulate payment gateway authorization delay
-    setTimeout(() => {
+    try {
+      // 1. Load Razorpay Script dynamically
+      const loaded = await loadRazorpayScript()
+      if (!loaded) {
+        alert('Failed to load Razorpay Payment Gateway. Please check your internet connection.')
+        setIsPaying(false)
+        return
+      }
+
+      // 2. Fetch Razorpay Key ID dynamically from backend
+      const keyResponse = await fetch(`${API_URL}/api/payments/key`)
+      if (!keyResponse.ok) {
+        const keyErr = await keyResponse.json()
+        throw new Error(keyErr.detail || 'Failed to fetch payment configuration from server')
+      }
+      const { key } = await keyResponse.json()
+
+      // 3. Create Order on the backend
+      const orderResponse = await fetch(`${API_URL}/api/payments/create-order`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: finalTotal })
+      })
+
+      if (!orderResponse.ok) {
+        const orderErr = await orderResponse.json()
+        throw new Error(orderErr.detail || 'Failed to initialize payment gateway order')
+      }
+
+      const orderData = await orderResponse.json()
+
+      // 4. Configure Razorpay checkout options
+      const options = {
+        key: key,
+        amount: orderData.amount,
+        currency: orderData.currency,
+        name: 'LUNARIS Premium Footwear',
+        description: 'Secure Order Payment',
+        image: '/logo.png',
+        order_id: orderData.order_id,
+        handler: async function (response) {
+          try {
+            // Send authorized payment data back to server for HMAC signature verification
+            const verifyResponse = await fetch(`${API_URL}/api/payments/verify`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(response)
+            })
+
+            if (verifyResponse.ok) {
+              // Signature matches, clear storefront cart on success and redirect
+              clearCart()
+              navigate('/order-confirmed')
+            } else {
+              const verifyErr = await verifyResponse.json()
+              alert(verifyErr.detail || 'Payment signature verification failed. Your transaction is unauthorized.')
+            }
+          } catch (verifyErr) {
+            console.error('Payment signature verification error:', verifyErr)
+            alert('An error occurred while verifying the payment signature.')
+          } finally {
+            setIsPaying(false)
+          }
+        },
+        prefill: {
+          name: fullName,
+          email: user?.email || '',
+          contact: ''
+        },
+        theme: {
+          color: '#1e1b4b' // Dark violet premium theme matching Lunaris aesthetics
+        },
+        modal: {
+          ondismiss: function () {
+            setIsPaying(false)
+          }
+        }
+      }
+
+      const rzp = new window.Razorpay(options)
+      rzp.open()
+    } catch (err) {
+      console.error('Payment gateway error:', err)
+      alert(err.message || 'An error occurred during the payment setup process.')
       setIsPaying(false)
-      // Clear storefront cart on success
-      clearCart()
-      // Navigate to confirmation page
-      navigate('/order-confirmed')
-    }, 1500)
+    }
   }
 
   return (

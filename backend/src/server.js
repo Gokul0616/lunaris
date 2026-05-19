@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { initDb } = require('./db');
 const userRoutes = require('./routes/userRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -18,6 +19,7 @@ app.get('/api/health', (req, res) => {
 
 // Register API Routes
 app.use('/api/users', userRoutes);
+app.use('/api/payments', paymentRoutes);
 
 // Initialize PostgreSQL and Start Express server only after database connection succeeds
 initDb()
