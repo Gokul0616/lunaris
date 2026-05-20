@@ -120,6 +120,8 @@ export default function About() {
               {about.team}
             </p>
           </div>
+        </section>
+
         {/* Dynamic Paragraphs Constructor */}
         {about.customSections && about.customSections.filter(sec => sec.type === 'paragraph').map(sec => (
           <section key={sec.id} className="flex flex-col gap-4 text-left border-t border-[#C8C8CC]/10 pt-16 animate-fadeIn">
