@@ -12,6 +12,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Checkout from './pages/Checkout'
 import OrderConfirmed from './pages/OrderConfirmed'
+import About from './pages/About'
 
 function AppContent() {
   const location = useLocation()
@@ -29,6 +30,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/about" element={<About />} />
           <Route path="/product/aeromax-elite" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<Account />} />

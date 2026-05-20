@@ -4,7 +4,8 @@ export default function NavigationDrawer({ activeTab, setActiveTab, hasLowStock,
     { id: 'orders', label: 'Orders', icon: 'package_2', alert: hasProcessingOrders },
     { id: 'inventory', label: 'Inventory', icon: 'inventory_2', alert: hasLowStock },
     { id: 'customers', label: 'Customers', icon: 'group' },
-    { id: 'analytics', label: 'Analytics', icon: 'monitoring' }
+    { id: 'analytics', label: 'Analytics', icon: 'monitoring' },
+    { id: 'storefront', label: 'Storefront', icon: 'storefront' }
   ];
 
   return (

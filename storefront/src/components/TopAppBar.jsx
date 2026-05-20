@@ -41,7 +41,7 @@ export default function TopAppBar() {
             Collection
           </NavLink>
           <NavLink
-            to="/shop"
+            to="/about"
             className={({ isActive }) =>
               `font-label-sm text-label-sm uppercase tracking-widest transition-all duration-200 ${isActive ? 'text-secondary opacity-100 font-bold scale-[1.02]' : 'text-on-surface-variant hover:text-secondary'
               }`
@@ -149,7 +149,7 @@ export default function TopAppBar() {
             {[
               { name: 'Home', path: '/' },
               { name: 'Collection', path: '/shop' },
-              { name: 'About', path: '/shop' },
+              { name: 'About', path: '/about' },
               { name: 'Shop', path: '/shop' },
               { name: 'Contact', path: '/shop' }
             ].map((link, idx) => (

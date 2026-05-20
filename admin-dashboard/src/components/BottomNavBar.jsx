@@ -4,6 +4,7 @@ export default function BottomNavBar({ activeTab, setActiveTab }) {
     { id: 'orders', label: 'Orders', icon: 'package_2' },
     { id: 'inventory', label: 'Inventory', icon: 'inventory_2' },
     { id: 'analytics', label: 'Stats', icon: 'monitoring' },
+    { id: 'storefront', label: 'Storefront', icon: 'storefront' },
     { id: 'settings', label: 'Profile', icon: 'settings' }
   ];
 

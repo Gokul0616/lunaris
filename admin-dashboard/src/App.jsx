@@ -14,6 +14,7 @@ import Inventory from './pages/Inventory'
 import Customers from './pages/Customers'
 import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
+import StorefrontSettings from './pages/StorefrontSettings'
 
 export default function App() {
   // Authentication State
@@ -26,7 +27,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(() => {
     const path = window.location.pathname
     const tab = path === '/' ? 'dashboard' : path.slice(1)
-    if (['dashboard', 'orders', 'inventory', 'customers', 'analytics', 'settings'].includes(tab)) {
+    if (['dashboard', 'orders', 'inventory', 'customers', 'analytics', 'settings', 'storefront'].includes(tab)) {
       return tab
     }
     return 'dashboard'
@@ -46,7 +47,7 @@ export default function App() {
     const handlePopState = () => {
       const path = window.location.pathname
       const tab = path === '/' ? 'dashboard' : path.slice(1)
-      if (['dashboard', 'orders', 'inventory', 'customers', 'analytics', 'settings'].includes(tab)) {
+      if (['dashboard', 'orders', 'inventory', 'customers', 'analytics', 'settings', 'storefront'].includes(tab)) {
         setActiveTab(tab)
       }
     }
@@ -240,6 +241,8 @@ export default function App() {
           )}
 
           {activeTab === 'analytics' && <Analytics />}
+
+          {activeTab === 'storefront' && <StorefrontSettings />}
 
           {activeTab === 'settings' && <Settings />}
         </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -32,6 +33,7 @@ export default function Footer() {
 
         <div className="flex flex-col gap-2">
           <h4 className="font-label-lg text-label-lg uppercase tracking-widest text-primary mb-1 font-bold">Support</h4>
+          <Link className="text-on-surface-variant hover:text-primary transition-colors text-xs text-left" to="/about">About Our Story</Link>
           <a className="text-on-surface-variant hover:text-primary transition-colors text-xs" href="#">Help Center & Orders</a>
           <a className="text-on-surface-variant hover:text-primary transition-colors text-xs" href="#">Returns & Exchanges</a>
           <a className="text-on-surface-variant hover:text-primary transition-colors text-xs" href="#">Privacy & Terms</a>

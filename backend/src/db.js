@@ -38,6 +38,16 @@ const initDb = async () => {
       );
     `);
     console.log('SUCCESS: PostgreSQL users table is initialized.');
+
+    // Create storefront_settings table for CMS properties
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS storefront_settings (
+        key VARCHAR(255) PRIMARY KEY,
+        value JSONB NOT NULL,
+        updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('SUCCESS: PostgreSQL storefront_settings table is initialized.');
     dbType = 'postgres';
   } catch (pgError) {
     console.warn('\n⚠️  WARNING: PostgreSQL connection failed (or is paused on Railway):', pgError.message);
