@@ -35,6 +35,11 @@ export default function About() {
 
   const about = content || {
     title: "About LUNARIS",
+    tagline: "Pushing Athletic Potential",
+    storySubtitle: "Our Story",
+    storyTitle: "Crafted For The Next Generation",
+    missionTitle: "Our Mission",
+    teamTitle: "The Visionaries",
     story: "Born in the pursuit of absolute athletic innovation, LUNARIS crafts premium, state-of-the-art performance footwear designed to push boundaries. We bridge the gap between high-level engineering and futuristic street aesthetics, creating a silhouette that is built for speed, responsiveness, and pure kinetic energy.",
     mission: "Our mission is simple: to empower athletes, creators, and daily runners with antigravity-class cushioning, responsive propulsion systems, and ultra-breathable materials. We believe every stride should feel like flying.",
     team: "Our team consists of industry-leading materials engineers, award-winning footwear designers, and visionary biomechanics experts dedicated to refining performance standards."
@@ -74,8 +79,8 @@ export default function About() {
         {/* Story Section */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-7 flex flex-col gap-4 text-left">
-            <h2 className="text-[10px] font-black text-[#C8C8CC] uppercase tracking-[0.3em]">Our Story</h2>
-            <h3 className="text-2xl font-black uppercase tracking-tight text-[#E6E6E8]">Crafted For The Next Generation</h3>
+            <h2 className="text-[10px] font-black text-[#C8C8CC] uppercase tracking-[0.3em]">{about.storySubtitle || 'Our Story'}</h2>
+            <h3 className="text-2xl font-black uppercase tracking-tight text-[#E6E6E8]">{about.storyTitle || 'Crafted For The Next Generation'}</h3>
             <p className="text-[#C8C8CC]/80 text-sm font-medium leading-relaxed">
               {about.story}
             </p>
@@ -104,7 +109,7 @@ export default function About() {
             <div className="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center">
               <span className="material-symbols-outlined text-indigo-400 text-[22px]">rocket_launch</span>
             </div>
-            <h3 className="text-md font-black uppercase tracking-wider text-[#E6E6E8]">Our Mission</h3>
+            <h3 className="text-md font-black uppercase tracking-wider text-[#E6E6E8]">{about.missionTitle || 'Our Mission'}</h3>
             <p className="text-[#C8C8CC]/70 text-xs leading-relaxed font-medium">
               {about.mission}
             </p>
@@ -115,7 +120,7 @@ export default function About() {
             <div className="w-10 h-10 rounded-xl bg-violet-500/15 flex items-center justify-center">
               <span className="material-symbols-outlined text-violet-400 text-[22px]">group</span>
             </div>
-            <h3 className="text-md font-black uppercase tracking-wider text-[#E6E6E8]">The Visionaries</h3>
+            <h3 className="text-md font-black uppercase tracking-wider text-[#E6E6E8]">{about.teamTitle || 'The Visionaries'}</h3>
             <p className="text-[#C8C8CC]/70 text-xs leading-relaxed font-medium">
               {about.team}
             </p>

@@ -6,6 +6,10 @@ export default function StorefrontSettings() {
   const [formData, setFormData] = useState({
     title: '',
     tagline: '',
+    storySubtitle: '',
+    storyTitle: '',
+    missionTitle: '',
+    teamTitle: '',
     story: '',
     mission: '',
     team: '',
@@ -25,6 +29,10 @@ export default function StorefrontSettings() {
         setFormData({
           title: data.title || '',
           tagline: data.tagline || '',
+          storySubtitle: data.storySubtitle || '',
+          storyTitle: data.storyTitle || '',
+          missionTitle: data.missionTitle || '',
+          teamTitle: data.teamTitle || '',
           story: data.story || '',
           mission: data.mission || '',
           team: data.team || '',
@@ -323,8 +331,36 @@ export default function StorefrontSettings() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1.5 border-t border-outline/10 pt-4">
-          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Brand Story</label>
+        {/* Brand Story Headers & Textarea */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-outline/10 pt-4">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-black tracking-widest text-primary">Story Category Tag / Subtitle</label>
+            <input
+              type="text"
+              name="storySubtitle"
+              value={formData.storySubtitle}
+              onChange={handleChange}
+              required
+              placeholder="e.g. Our Story"
+              className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="text-[10px] uppercase font-black tracking-widest text-primary">Story Section Title / Headline</label>
+            <input
+              type="text"
+              name="storyTitle"
+              value={formData.storyTitle}
+              onChange={handleChange}
+              required
+              placeholder="e.g. Crafted For The Next Generation"
+              className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Brand Story Paragraph Content</label>
           <textarea
             name="story"
             value={formData.story}
@@ -336,8 +372,22 @@ export default function StorefrontSettings() {
           />
         </div>
 
+        {/* Our Mission Header & Content */}
+        <div className="flex flex-col gap-1.5 border-t border-outline/10 pt-4">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Mission Card Header / Title</label>
+          <input
+            type="text"
+            name="missionTitle"
+            value={formData.missionTitle}
+            onChange={handleChange}
+            required
+            placeholder="e.g. Our Mission"
+            className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+          />
+        </div>
+
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Our Mission</label>
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Mission Statement Content</label>
           <textarea
             name="mission"
             value={formData.mission}
@@ -349,8 +399,22 @@ export default function StorefrontSettings() {
           />
         </div>
 
+        {/* Visionaries & Team Header & Content */}
+        <div className="flex flex-col gap-1.5 border-t border-outline/10 pt-4">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Team Card Header / Title</label>
+          <input
+            type="text"
+            name="teamTitle"
+            value={formData.teamTitle}
+            onChange={handleChange}
+            required
+            placeholder="e.g. The Visionaries"
+            className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+          />
+        </div>
+
         <div className="flex flex-col gap-1.5">
-          <label className="text-[10px] uppercase font-black tracking-widest text-primary">visionaries & Team</label>
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Visionaries & Team Content</label>
           <textarea
             name="team"
             value={formData.team}
