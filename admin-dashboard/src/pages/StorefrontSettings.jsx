@@ -5,6 +5,7 @@ const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 export default function StorefrontSettings() {
   const [formData, setFormData] = useState({
     title: '',
+    tagline: '',
     story: '',
     mission: '',
     team: '',
@@ -23,6 +24,7 @@ export default function StorefrontSettings() {
       .then(data => {
         setFormData({
           title: data.title || '',
+          tagline: data.tagline || '',
           story: data.story || '',
           mission: data.mission || '',
           team: data.team || '',
@@ -198,6 +200,19 @@ export default function StorefrontSettings() {
             onChange={handleChange}
             required
             placeholder="e.g. About LUNARIS"
+            className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Page Tagline</label>
+          <input
+            type="text"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleChange}
+            required
+            placeholder="e.g. Pushing Athletic Potential"
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
           />
         </div>

@@ -63,7 +63,7 @@ export default function About() {
             {about.title}
           </h1>
           <p className="text-xs uppercase tracking-[0.4em] font-black text-[#C8C8CC]">
-            Pushing Athletic Potential
+            {about.tagline || 'Pushing Athletic Potential'}
           </p>
         </div>
       </section>
