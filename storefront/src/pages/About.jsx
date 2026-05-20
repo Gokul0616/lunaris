@@ -120,7 +120,33 @@ export default function About() {
               {about.team}
             </p>
           </div>
-        </section>
+        {/* Dynamic Paragraphs Constructor */}
+        {about.customSections && about.customSections.filter(sec => sec.type === 'paragraph').map(sec => (
+          <section key={sec.id} className="flex flex-col gap-4 text-left border-t border-[#C8C8CC]/10 pt-16 animate-fadeIn">
+            <h2 className="text-[10px] font-black text-[#C8C8CC] uppercase tracking-[0.3em]">Insights</h2>
+            <h3 className="text-2xl font-black uppercase tracking-tight text-[#E6E6E8]">{sec.title}</h3>
+            <p className="text-[#C8C8CC]/80 text-sm font-medium leading-relaxed max-w-[800px]">
+              {sec.content}
+            </p>
+          </section>
+        ))}
+
+        {/* Dynamic Cards Grid Constructor */}
+        {about.customSections && about.customSections.filter(sec => sec.type === 'card').length > 0 && (
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 border-t border-[#C8C8CC]/10 pt-16 animate-fadeIn">
+            {about.customSections.filter(sec => sec.type === 'card').map(sec => (
+              <div key={sec.id} className="p-8 bg-[#1e1e20] border border-[#C8C8CC]/10 rounded-2xl flex flex-col gap-4 text-left hover:border-[#C8C8CC]/30 transition-colors duration-300">
+                <div className="w-10 h-10 rounded-xl bg-indigo-500/15 flex items-center justify-center">
+                  <span className="material-symbols-outlined text-indigo-400 text-[22px]">{sec.icon || 'star'}</span>
+                </div>
+                <h3 className="text-md font-black uppercase tracking-wider text-[#E6E6E8]">{sec.title}</h3>
+                <p className="text-[#C8C8CC]/70 text-xs leading-relaxed font-medium">
+                  {sec.content}
+                </p>
+              </div>
+            ))}
+          </section>
+        )}
 
       </main>
     </div>
