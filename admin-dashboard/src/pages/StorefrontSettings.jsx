@@ -206,7 +206,6 @@ export default function StorefrontSettings() {
             name="title"
             value={formData.title}
             onChange={handleChange}
-            required
             placeholder="e.g. About LUNARIS"
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
           />
@@ -219,7 +218,6 @@ export default function StorefrontSettings() {
             name="tagline"
             value={formData.tagline}
             onChange={handleChange}
-            required
             placeholder="e.g. Pushing Athletic Potential"
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
           />
@@ -340,7 +338,6 @@ export default function StorefrontSettings() {
               name="storySubtitle"
               value={formData.storySubtitle}
               onChange={handleChange}
-              required
               placeholder="e.g. Our Story"
               className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
             />
@@ -352,7 +349,6 @@ export default function StorefrontSettings() {
               name="storyTitle"
               value={formData.storyTitle}
               onChange={handleChange}
-              required
               placeholder="e.g. Crafted For The Next Generation"
               className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
             />
@@ -365,7 +361,6 @@ export default function StorefrontSettings() {
             name="story"
             value={formData.story}
             onChange={handleChange}
-            required
             rows={5}
             placeholder="Tell your brand's story..."
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-medium leading-relaxed placeholder:text-on-surface-variant/40"
@@ -380,7 +375,6 @@ export default function StorefrontSettings() {
             name="missionTitle"
             value={formData.missionTitle}
             onChange={handleChange}
-            required
             placeholder="e.g. Our Mission"
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
           />
@@ -392,7 +386,6 @@ export default function StorefrontSettings() {
             name="mission"
             value={formData.mission}
             onChange={handleChange}
-            required
             rows={3}
             placeholder="Define your main mission statement..."
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-medium leading-relaxed placeholder:text-on-surface-variant/40"
@@ -407,7 +400,6 @@ export default function StorefrontSettings() {
             name="teamTitle"
             value={formData.teamTitle}
             onChange={handleChange}
-            required
             placeholder="e.g. The Visionaries"
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
           />
@@ -419,7 +411,6 @@ export default function StorefrontSettings() {
             name="team"
             value={formData.team}
             onChange={handleChange}
-            required
             rows={3}
             placeholder="Describe your design and engineering teams..."
             className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-medium leading-relaxed placeholder:text-on-surface-variant/40"

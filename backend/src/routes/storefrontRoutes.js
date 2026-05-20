@@ -55,10 +55,6 @@ router.post('/about', async (req, res) => {
       customSections 
     } = req.body;
 
-    if (!title || !story || !mission || !team) {
-      return res.status(400).json({ detail: 'All fields (title, story, mission, team) are required.' });
-    }
-
     const value = { 
       title, 
       tagline, 
