@@ -75,6 +75,7 @@ export default function StorefrontSettings() {
           id: `sec_${Date.now()}`,
           type: 'paragraph', // default
           title: '',
+          subtitle: '',
           content: '',
           icon: 'eco'
         }
@@ -407,7 +408,7 @@ export default function StorefrontSettings() {
                   </div>
 
                   {/* Section Controls Grid */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="flex flex-col gap-1.5 text-left">
                       <label className="text-[9px] uppercase font-black tracking-widest text-primary">Layout Type</label>
                       <select
@@ -418,6 +419,17 @@ export default function StorefrontSettings() {
                         <option value="paragraph">Full Width Rich Paragraph</option>
                         <option value="card">Grid Info Card</option>
                       </select>
+                    </div>
+
+                    <div className="flex flex-col gap-1.5 text-left">
+                      <label className="text-[9px] uppercase font-black tracking-widest text-primary">Category Tag / Subtitle</label>
+                      <input
+                        type="text"
+                        value={sec.subtitle || ''}
+                        onChange={(e) => handleSectionChange(sec.id, 'subtitle', e.target.value)}
+                        placeholder="e.g. Insights, Innovation"
+                        className="w-full bg-surface-container border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-2.5 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+                      />
                     </div>
 
                     <div className="flex flex-col gap-1.5 text-left">

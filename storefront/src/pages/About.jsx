@@ -125,7 +125,7 @@ export default function About() {
         {/* Dynamic Paragraphs Constructor */}
         {about.customSections && about.customSections.filter(sec => sec.type === 'paragraph').map(sec => (
           <section key={sec.id} className="flex flex-col gap-4 text-left border-t border-[#C8C8CC]/10 pt-16 animate-fadeIn">
-            <h2 className="text-[10px] font-black text-[#C8C8CC] uppercase tracking-[0.3em]">Insights</h2>
+            <h2 className="text-[10px] font-black text-[#C8C8CC] uppercase tracking-[0.3em]">{sec.subtitle || 'Insight'}</h2>
             <h3 className="text-2xl font-black uppercase tracking-tight text-[#E6E6E8]">{sec.title}</h3>
             <p className="text-[#C8C8CC]/80 text-sm font-medium leading-relaxed max-w-[800px]">
               {sec.content}
