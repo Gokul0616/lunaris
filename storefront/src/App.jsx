@@ -3,6 +3,7 @@ import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import TopAppBar from './components/TopAppBar'
 import BottomNavBar from './components/BottomNavBar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import Shop from './pages/Shop'
 import ProductDetail from './pages/ProductDetail'
@@ -19,6 +20,7 @@ function AppContent() {
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register'
   const isCheckoutFlow = location.pathname === '/checkout' || location.pathname === '/order-confirmed'
   const hideBars = isAuthPage || isCheckoutFlow
+  const showFooter = !isAuthPage && !isCheckoutFlow && location.pathname !== '/shop'
 
   return (
     <div className="min-h-screen bg-background text-on-background font-body-md antialiased flex flex-col">
@@ -40,6 +42,9 @@ function AppContent() {
           <Route path="/order-confirmed" element={<OrderConfirmed />} />
         </Routes>
       </main>
+      
+      {/* Universal Footer Component - Shown on allowed pages */}
+      {showFooter && <Footer />}
       
       {/* Universal Bottom Navigation Bar (Mobile) - Hidden on Auth/Checkout pages */}
       {!hideBars && <BottomNavBar />}

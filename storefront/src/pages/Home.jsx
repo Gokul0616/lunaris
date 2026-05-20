@@ -1,5 +1,4 @@
 import { useNavigate, Link } from 'react-router-dom'
-import Footer from '../components/Footer'
 import heroBg from '../assets/image.png'
 
 const PILlARS = [
@@ -249,8 +248,7 @@ export default function Home() {
 
       </section>
 
-      {/* Footer component */}
-      <Footer />
+// We removed the local Footer render in favor of centralized global rendering in App.jsx.
 
     </div>
   )
