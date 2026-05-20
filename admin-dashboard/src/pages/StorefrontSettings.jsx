@@ -7,7 +7,9 @@ export default function StorefrontSettings() {
     title: '',
     story: '',
     mission: '',
-    team: ''
+    team: '',
+    heroImage: '',
+    storyImage: ''
   })
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
@@ -22,7 +24,9 @@ export default function StorefrontSettings() {
           title: data.title || '',
           story: data.story || '',
           mission: data.mission || '',
-          team: data.team || ''
+          team: data.team || '',
+          heroImage: data.heroImage || '',
+          storyImage: data.storyImage || ''
         })
         setLoading(false)
       })
@@ -36,6 +40,27 @@ export default function StorefrontSettings() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
+  }
+
+  // Read uploaded files as Base64 Data URLs
+  const handleFileChange = (e, field) => {
+    const file = e.target.files[0]
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setMessage({ type: 'error', text: 'Selected image exceeds the 5MB file upload limit.' })
+        return
+      }
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFormData(prev => ({ ...prev, [field]: reader.result }))
+        setMessage({ type: '', text: '' })
+      }
+      reader.readAsDataURL(file)
+    }
+  }
+
+  const handleClearImage = (field) => {
+    setFormData(prev => ({ ...prev, [field]: '' }))
   }
 
   const handleSubmit = async (e) => {
@@ -81,7 +106,7 @@ export default function StorefrontSettings() {
   }
 
   return (
-    <div className="animate-fadeIn max-w-[800px] mx-auto text-left">
+    <div className="animate-fadeIn max-w-[800px] mx-auto text-left pb-12">
       {/* Title Header */}
       <div className="mb-6">
         <h1 className="text-xl font-black uppercase tracking-wider text-primary">Storefront Settings</h1>
@@ -125,7 +150,113 @@ export default function StorefrontSettings() {
           />
         </div>
 
-        <div className="flex flex-col gap-1.5">
+        {/* Hero Banner Background Image Uploader */}
+        <div className="flex flex-col gap-2 border-t border-outline/10 pt-4">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Hero Banner Background Image</label>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div className="md:col-span-8 flex flex-col gap-2">
+              <input
+                type="text"
+                name="heroImage"
+                value={formData.heroImage}
+                onChange={handleChange}
+                placeholder="Paste external image link URL..."
+                className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+              />
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange(e, 'heroImage')}
+                  className="hidden"
+                  id="hero-image-file"
+                />
+                <label
+                  htmlFor="hero-image-file"
+                  className="flex items-center justify-center gap-2 border border-dashed border-outline/35 hover:border-primary rounded-xl py-3 px-4 text-xs font-bold text-on-surface-variant hover:text-primary cursor-pointer transition-colors w-full"
+                >
+                  <span className="material-symbols-outlined text-[18px]">cloud_upload</span>
+                  <span>Upload Local File (Auto-Base64)</span>
+                </label>
+              </div>
+            </div>
+            <div className="md:col-span-4 flex items-center justify-center bg-surface-container-high border border-outline/35 rounded-2xl p-2 min-h-[110px] relative overflow-hidden group">
+              {formData.heroImage ? (
+                <>
+                  <img
+                    src={formData.heroImage}
+                    alt="Hero Preview"
+                    className="max-h-[94px] max-w-full object-contain rounded-xl"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleClearImage('heroImage')}
+                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors shadow-md flex items-center justify-center cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </>
+              ) : (
+                <span className="text-[10px] text-on-surface-variant/40 uppercase font-black">No Preview</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Brand Story Image Uploader */}
+        <div className="flex flex-col gap-2 border-t border-outline/10 pt-4">
+          <label className="text-[10px] uppercase font-black tracking-widest text-primary">Brand Story Section Image</label>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div className="md:col-span-8 flex flex-col gap-2">
+              <input
+                type="text"
+                name="storyImage"
+                value={formData.storyImage}
+                onChange={handleChange}
+                placeholder="Paste external image link URL..."
+                className="w-full bg-surface-container-high border border-outline/35 focus:border-primary focus:outline-none rounded-xl px-4 py-3 text-xs text-primary font-semibold placeholder:text-on-surface-variant/40"
+              />
+              <div className="relative">
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange(e, 'storyImage')}
+                  className="hidden"
+                  id="story-image-file"
+                />
+                <label
+                  htmlFor="story-image-file"
+                  className="flex items-center justify-center gap-2 border border-dashed border-outline/35 hover:border-primary rounded-xl py-3 px-4 text-xs font-bold text-on-surface-variant hover:text-primary cursor-pointer transition-colors w-full"
+                >
+                  <span className="material-symbols-outlined text-[18px]">cloud_upload</span>
+                  <span>Upload Local File (Auto-Base64)</span>
+                </label>
+              </div>
+            </div>
+            <div className="md:col-span-4 flex items-center justify-center bg-surface-container-high border border-outline/35 rounded-2xl p-2 min-h-[110px] relative overflow-hidden group">
+              {formData.storyImage ? (
+                <>
+                  <img
+                    src={formData.storyImage}
+                    alt="Story Preview"
+                    className="max-h-[94px] max-w-full object-contain rounded-xl"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleClearImage('storyImage')}
+                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors shadow-md flex items-center justify-center cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-[14px]">close</span>
+                  </button>
+                </>
+              ) : (
+                <span className="text-[10px] text-on-surface-variant/40 uppercase font-black">No Preview</span>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1.5 border-t border-outline/10 pt-4">
           <label className="text-[10px] uppercase font-black tracking-widest text-primary">Brand Story</label>
           <textarea
             name="story"

@@ -44,7 +44,15 @@ export default function About() {
     <div className="flex-grow w-full bg-[#151517] text-white animate-fadeIn pb-24">
       {/* Hero Banner with Sleek Gradients */}
       <section className="relative w-full h-[400px] flex items-center justify-center overflow-hidden border-b border-[#C8C8CC]/10">
-        <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-slate-900 to-indigo-950 z-0"></div>
+        {about.heroImage ? (
+          <img
+            src={about.heroImage}
+            alt="Hero Background"
+            className="absolute inset-0 w-full h-full object-cover z-0 filter brightness-[0.35]"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-tr from-zinc-950 via-slate-900 to-indigo-950 z-0"></div>
+        )}
         
         {/* Anti-gravity animated background glow */}
         <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] rounded-full bg-indigo-500/5 blur-[120px] animate-pulse"></div>
@@ -73,9 +81,19 @@ export default function About() {
             </p>
           </div>
           <div className="md:col-span-5 relative group overflow-hidden rounded-2xl border border-[#C8C8CC]/10 shadow-lg bg-[#222224] min-h-[250px] flex items-center justify-center">
-            {/* Visual aesthetic using abstract gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-violet-600/15 group-hover:scale-105 transition-transform duration-700"></div>
-            <span className="material-symbols-outlined text-[64px] text-[#C8C8CC] animate-bounce">footprint</span>
+            {about.storyImage ? (
+              <img
+                src={about.storyImage}
+                alt="Brand Story Visual"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+            ) : (
+              <>
+                {/* Visual aesthetic using abstract gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-violet-600/15 group-hover:scale-105 transition-transform duration-700"></div>
+                <span className="material-symbols-outlined text-[64px] text-[#C8C8CC] animate-bounce">footprint</span>
+              </>
+            )}
           </div>
         </section>
 

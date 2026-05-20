@@ -40,13 +40,13 @@ router.get('/about', async (req, res) => {
 // @desc    Update dynamic About Us page content
 router.post('/about', async (req, res) => {
   try {
-    const { title, story, mission, team } = req.body;
+    const { title, story, mission, team, heroImage, storyImage } = req.body;
 
     if (!title || !story || !mission || !team) {
       return res.status(400).json({ detail: 'All fields (title, story, mission, team) are required.' });
     }
 
-    const value = { title, story, mission, team };
+    const value = { title, story, mission, team, heroImage, storyImage };
     const dbType = getDbType();
 
     if (dbType === 'postgres') {
