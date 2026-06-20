@@ -248,7 +248,7 @@ export default function Home() {
 
       </section>
 
-// We removed the local Footer render in favor of centralized global rendering in App.jsx.
+      {/* We removed the local Footer render in favor of centralized global rendering in App.jsx.*/}
 
     </div>
   )
